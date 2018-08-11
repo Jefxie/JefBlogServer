@@ -9,7 +9,7 @@ module.exports = appInfo => {
     // add your config here
     config.middleware = ["errors"];
 
-    // 错误集中处理 
+    // 错误集中处理
     config.errors = {
         "1": "未登录或登录信息失效",
         "2": "用户名或密码错误",
@@ -20,8 +20,11 @@ module.exports = appInfo => {
     // mongodb配置
     config.mongoose = {
         client: {
-            url: "mongodb://127.0.0.1/jef_blog",
-            options: {}
+            url:'mongodb://127.0.0.1/jefblog',
+            options: {
+                user: "jefblog",
+                pass: "jef@blog.db"
+            }
         }
     };
     // github passport config
