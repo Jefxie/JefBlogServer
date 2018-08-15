@@ -6,6 +6,7 @@ module.exports = app => {
 
     const UserSchema = new Schema({
         login: { type: String },
+        _id: { type: String },
         id: { type: String },
         name: { type: String },
         email: { type: String },
@@ -14,8 +15,8 @@ module.exports = app => {
         bio: { type: String },
         blog: { type: String },
         location: { type: String },
-        level:{type:String}
+        level: { type: String }
     });
 
-    return mongoose.model('jef_user',UserSchema);
+    return mongoose.model("jef_user", UserSchema);
 };

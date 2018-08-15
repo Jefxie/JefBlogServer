@@ -4,8 +4,10 @@ class CategoryService extends Service {
     async addCategory(name, alias) {
         const { ctx } = this;
         const category = await ctx.model.Category();
+        const $id = ctx.uuid();
         const _save = {
-            id: ctx.uuid(),
+            id: $id,
+            _id: $id,
             name,
             alias
         };

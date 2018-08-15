@@ -5,12 +5,13 @@ module.exports = app => {
     const Schema = mongoose.Schema;
 
     const ArticleSchema = new Schema({
-        id: { type: String },
+        _id: { type: String },
+        id: { type: String, ref: "jef_comment" },
         title: { type: String },
         content: { type: String },
         abstract: { type: String },
-        category_id: { type: String },
-        author: { type: String },
+        category_id: { type: String, ref: "jef_category" },
+        author: { type: String, ref: "jef_user" },
         create_at: { type: Date, default: Date.now() },
         pv: { type: Number, default: 0 }
     });

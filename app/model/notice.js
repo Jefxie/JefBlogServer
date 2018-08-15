@@ -5,7 +5,7 @@ module.exports = app => {
     const Schema = mongoose.Schema;
 
     const NoticeSchema = new Schema({
-        id: { type: String },
+        _id: { type: String },
         author: { type: String },
         type: { type: Number,default:0 },
         created_at: { type: Date, default: Date.now() },

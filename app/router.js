@@ -11,6 +11,7 @@ module.exports = app => {
 
     // user
     router.get("/api/user", controller.user.userLogin);
+    router.post("/api/user", controller.user.userLogout);
     router.put("/api/user", controller.user.modifyUserInfo);
 
     // category

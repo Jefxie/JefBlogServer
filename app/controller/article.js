@@ -6,14 +6,13 @@ class Article extends Controller {
     async addArticle() {
         const { ctx } = this;
 
-        if (!ctx.isAuthenticated()) throw 1;
-        if (ctx.user.level !== "Admin") throw 4;
+        // if (!ctx.isAuthenticated()) throw 1;
+        // if (ctx.user.level !== "Admin") throw 4;
 
         const rule = {
             title: { type: "string" },
             content: { type: "string" },
             abstract: { type: "string" },
-            author: { type: "string" },
             category_id: { type: "string" }
         };
         const { body } = ctx.request;
@@ -23,6 +22,7 @@ class Article extends Controller {
         } catch (error) {
             throw 3;
         }
+        body.author = '29194135'||ctx.user.id;
         const res = await ctx.service.article.addArticle(body);
         ctx.body.data = res;
     }
@@ -31,7 +31,7 @@ class Article extends Controller {
         if (!ctx.params.id) throw 3;
         // find detail
         const res = await ctx.service.article.getOneArticle(ctx.params.id);
-        
+
         ctx.body.data = res;
         // pv +1
         ++res.pv;
@@ -41,11 +41,11 @@ class Article extends Controller {
         const { ctx } = this;
 
         const { query = {} } = ctx;
-
+        const _category = query.category ? { category_id: query.category } : {};
         const res = await ctx.service.article.getArticleList(
-            query.category || {},
-            query.total || 10,
-            query.page || 1
+            _category,
+            query.total - 0 || 10,
+            query.page - 0 || 1
         );
 
         ctx.body.data = res;

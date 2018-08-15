@@ -33,6 +33,13 @@ class Users extends Controller {
             throw error;
         }
     }
+    userLogout() {
+        const { ctx } = this;
+        if (!ctx.isAuthenticated()) throw 1;
+
+        ctx.logout();
+        
+    }
 }
 
 module.exports = Users;

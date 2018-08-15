@@ -6,6 +6,7 @@ class UserService extends Service {
         const user = await ctx.model.User();
 
         user.login = data.login;
+        user._id = data.id;
         user.id = data.id;
         user.name = data.name;
         user.email = data.email;

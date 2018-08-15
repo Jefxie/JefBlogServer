@@ -19,11 +19,18 @@ module.exports = appInfo => {
 
     // mongodb配置
     config.mongoose = {
+        // client: {
+        //     url:'mongodb://127.0.0.1/jefblog',
+        //     options: {
+        //         user: "jefblog",
+        //         pass: "jef@blog.db"
+        //     }
+        // }
         client: {
-            url:'mongodb://127.0.0.1/jefblog',
+            url: "mongodb://127.0.0.1/jef_blog",
             options: {
-                user: "jefblog",
-                pass: "jef@blog.db"
+                // user: "jefblog",
+                // pass: "jef@blog.db"
             }
         }
     };
@@ -37,15 +44,25 @@ module.exports = appInfo => {
 
     // cors
     config.cors = {
-        origin: "*",
-        allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH"
+        origin: "http://127.0.0.1:3000",
+        allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
+        credentials: true
     };
 
     // 安全配置 开发时临时关闭csrf
-    // config.security = {
-    //     csrf: {
-    //         enable: false
-    //     }
-    // };
+    config.security = {
+        csrf: {
+            enable: false
+        },
+        // xst:{
+        //     enable:false
+        // },
+        // domainWhiteList: [
+        //     "http://localhost:3000",
+        //     "c",
+        //     "http://127.0.0.1:3000/login",
+        //     "http://127.0.0.1:7001"
+        // ]
+    };
     return config;
 };

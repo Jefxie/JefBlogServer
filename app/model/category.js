@@ -5,6 +5,7 @@ module.exports = app => {
     const Schema = mongoose.Schema;
 
     const CategorySchema = new Schema({
+        _id: { type: String },
         id: { type: String },
         name: { type: String },
         alias: { type: String },
