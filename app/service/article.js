@@ -11,7 +11,7 @@ class CategoryService extends Service {
         article.content = encodeURIComponent(data.content);
         article.abstract = data.abstract;
         article.author = data.author;
-        article.category_id = data.category_id;
+        article.category = data.category;
         article.create_at = Date.now();
         article.pv = 0;
 
@@ -19,9 +19,9 @@ class CategoryService extends Service {
     }
     getOneArticle(id) {
         const { ctx } = this;
-        return ctx.model.Article.findOne({ id }, { _id: 0, __v: 0 })
-            .populate("category_id", "-_id name")
-            .populate("author", "-_id name");
+        return ctx.model.Article.findOne({ id }, { __v: 0 })
+            .populate("category", "-_id name id")
+            .populate("author", "-_id name login id");
     }
     getArticleList(category = {}, total = 10, page = 1) {
         return this.ctx.model.Article.find(category, {
@@ -30,13 +30,13 @@ class CategoryService extends Service {
             create_at: 1,
             pv: 1,
             author: 1,
-            category_id: 1,
+            category: 1,
             _id: 0,
             id: 1
         })
-            .populate("category_id", "-_id name alias")
+            .populate("category", "-_id name alias")
             .populate("author", "-_id name login")
-            .sort("create_at")
+            .sort({create_at:-1})
             .skip(total * (page - 1))
             .limit(total);
     }

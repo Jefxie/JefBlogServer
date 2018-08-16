@@ -6,15 +6,13 @@ module.exports = app => {
 
     const NoticeSchema = new Schema({
         _id: { type: String },
-        author: { type: String },
-        type: { type: Number,default:0 },
+        from: { type: String, ref: "jef_user" },
+        to: { type: String },
+        type: { type: String, default: "comment" },
         created_at: { type: Date, default: Date.now() },
-        bio: { type: String },
-        blog: { type: String },
-        location: { type: String },
-        level:{type:String}
+        state: { type: Number, default: 1 },
+        target: { type: String, ref: "jef_article" }
     });
 
-    return mongoose.model('jef_notice',NoticeSchema);
+    return mongoose.model("jef_notice", NoticeSchema);
 };
-// jefBlogServer

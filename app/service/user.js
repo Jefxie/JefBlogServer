@@ -23,6 +23,10 @@ class UserService extends Service {
         const {ctx} = this;
         return ctx.model.User.findOne({ id });
     }
+    getOneUserinfoToLogin(login) {
+        const {ctx} = this;
+        return ctx.model.User.findOne({ login });
+    }
 }
 
 module.exports = UserService;

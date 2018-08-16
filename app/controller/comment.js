@@ -18,10 +18,18 @@ class Comment extends Controller {
             throw 3;
         }
 
-        body.author = ctx.user.login;
+        body.author = ctx.user.id;
         body.avatar_url = ctx.user.avatar_url;
 
         await ctx.service.comment.addComment(body);
+        // 添加消息
+        if (body.parent) {
+            ctx.service.notice.addNotice({
+                from: body.author,
+                to: body.parent,
+                target: body.article_id
+            });
+        }
     }
     async getComment() {
         const { ctx } = this;

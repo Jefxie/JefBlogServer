@@ -5,7 +5,13 @@ const Controller = require("egg").Controller;
 class Users extends Controller {
     async userLogin() {
         const { ctx } = this;
-        if (ctx.isAuthenticated()) {
+        const { query = {} } = ctx;
+        if (query.login) {
+            const user = await ctx.service.user.getOneUserinfoToLogin(
+                query.login
+            );
+            ctx.body.data = user;
+        } else if (ctx.isAuthenticated()) {
             ctx.body.data = ctx.user;
         } else {
             throw 1;
@@ -38,7 +44,6 @@ class Users extends Controller {
         if (!ctx.isAuthenticated()) throw 1;
 
         ctx.logout();
-        
     }
 }
 

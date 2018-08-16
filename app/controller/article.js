@@ -6,14 +6,14 @@ class Article extends Controller {
     async addArticle() {
         const { ctx } = this;
 
-        // if (!ctx.isAuthenticated()) throw 1;
-        // if (ctx.user.level !== "Admin") throw 4;
+        if (!ctx.isAuthenticated()) throw 1;
+        if (ctx.user.level !== "Admin") throw 4;
 
         const rule = {
             title: { type: "string" },
             content: { type: "string" },
             abstract: { type: "string" },
-            category_id: { type: "string" }
+            category: { type: "string" }
         };
         const { body } = ctx.request;
         try {
@@ -22,7 +22,7 @@ class Article extends Controller {
         } catch (error) {
             throw 3;
         }
-        body.author = '29194135'||ctx.user.id;
+        body.author = ctx.user.id;
         const res = await ctx.service.article.addArticle(body);
         ctx.body.data = res;
     }
@@ -31,17 +31,19 @@ class Article extends Controller {
         if (!ctx.params.id) throw 3;
         // find detail
         const res = await ctx.service.article.getOneArticle(ctx.params.id);
-
-        ctx.body.data = res;
+        // deep clone
+        ctx.body.data = ctx.deepClone(res);
         // pv +1
-        ++res.pv;
+        res.pv = res.pv + 1;
+        res.category = res.category.id;
+        res.author = res.author.id;
         res.save();
     }
     async getArticleList() {
         const { ctx } = this;
 
         const { query = {} } = ctx;
-        const _category = query.category ? { category_id: query.category } : {};
+        const _category = query.category ? { category: query.category } : {};
         const res = await ctx.service.article.getArticleList(
             _category,
             query.total - 0 || 10,
@@ -63,7 +65,7 @@ class Article extends Controller {
         res.title = body.title || res.title;
         res.content = body.content || res.content;
         res.abstract = body.abstract || res.abstract;
-        res.category_id = body.category_id || res.category_id;
+        res.category = body.category || res.category;
 
         await res.save();
     }

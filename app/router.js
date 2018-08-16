@@ -31,4 +31,9 @@ module.exports = app => {
     router.get("/api/comment", controller.comment.getComment);
     router.post("/api/comment", controller.comment.addComment);
     router.delete("/api/comment", controller.comment.removeComment);
+
+    // notice
+    router.get("/api/notice/:id", controller.notice.modifyNotice);
+    router.get("/api/notice", controller.notice.getNoticeList);
+    router.post("/api/notice", controller.notice.getNoticeCount);
 };
