@@ -19,19 +19,19 @@ module.exports = appInfo => {
 
     // mongodb配置
     config.mongoose = {
-        // client: {
-        //     url:'mongodb://127.0.0.1/jefblog',
-        //     options: {
-        //         user: "jefblog",
-        //         pass: "jef@blog.db"
-        //     }
-        // }
         client: {
-            url: "mongodb://127.0.0.1/jef_blog",
+            url:'mongodb://127.0.0.1/jefblog',
             options: {
-                // user: "jefblog",
-                // pass: "jef@blog.db"
+                user: "jefblog",
+                pass: "jef@blog.db"
             }
+        }
+        // client: {
+        //     url: "mongodb://127.0.0.1/jef_blog",
+        //     options: {
+        //         // user: "jefblog",
+        //         // pass: "jef@blog.db"
+        //     }
         }
     };
     // github passport config
@@ -44,32 +44,29 @@ module.exports = appInfo => {
 
     // cors
     config.cors = {
-        origin: "http://127.0.0.1:3000",
+        origin: "https://www.jef.site",
         allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
         credentials: true
     };
 
     // 安全配置 开发时临时关闭csrf
     config.security = {
-        csrf: {
-            enable: false
-        }
+        // csrf: {
+        //     enable: false
+        // }
         // domainWhiteList: [
-        //     "http://localhost:3000",
-        //     "c",
-        //     "http://127.0.0.1:3000/login",
         //     "http://127.0.0.1:7001"
         // ]
     };
     // 七牛生成token
-    // config.qiniuToken = {
-    //     accessKey: "gDdFqmUq-ZQJwBEwnexLN0zV3jwsXkkO93ZJe2zF",
-    //     secretKey: "4iz6EAyiiJjPz2DR9mADDpAUNdk-Y020ZR5qc2HU",
-    //     options: {
-    //         scope: "jefblog",
-    //         returnBody: `{"err":0,"data":"http://image.jef.site/$(key)"","key":"$(key)","hash":"$(etag)"}`
-    //     }
-    // };
+    config.qiniuToken = {
+        accessKey: "gDdFqmUq-ZQJwBEwnexLN0zV3jwsXkkO93ZJe2zF",
+        secretKey: "4iz6EAyiiJjPz2DR9mADDpAUNdk-Y020ZR5qc2HU",
+        options: {
+            scope: "jefblog",
+            returnBody: `{"err":0,"data":"http://image.jef.site/$(key)","key":"$(key)","hash":"$(etag)"}`
+        }
+    };
 
     return config;
 };
