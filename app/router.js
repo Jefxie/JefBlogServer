@@ -13,7 +13,6 @@ module.exports = app => {
     router.get("/api/user", controller.user.userLogin);
     router.post("/api/user", controller.user.userLogout);
     router.put("/api/user", controller.user.modifyUserInfo);
-    router.get("/api/qiniu", controller.user.qiniuToken);
 
     // category
     router.get("/api/category", controller.category.getCategoryList);
@@ -37,4 +36,7 @@ module.exports = app => {
     router.get("/api/notice/:id", controller.notice.modifyNotice);
     router.get("/api/notice", controller.notice.getNoticeList);
     router.post("/api/notice", controller.notice.getNoticeCount);
+
+    // uploadToken
+    router.get("/api/qiniu/token", controller.qiniu.qiniuUploadToken);
 };

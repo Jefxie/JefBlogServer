@@ -53,10 +53,7 @@ module.exports = appInfo => {
     config.security = {
         csrf: {
             enable: false
-        },
-        // xst:{
-        //     enable:false
-        // },
+        }
         // domainWhiteList: [
         //     "http://localhost:3000",
         //     "c",
@@ -64,5 +61,15 @@ module.exports = appInfo => {
         //     "http://127.0.0.1:7001"
         // ]
     };
+    // 七牛生成token
+    // config.qiniuToken = {
+    //     accessKey: "gDdFqmUq-ZQJwBEwnexLN0zV3jwsXkkO93ZJe2zF",
+    //     secretKey: "4iz6EAyiiJjPz2DR9mADDpAUNdk-Y020ZR5qc2HU",
+    //     options: {
+    //         scope: "jefblog",
+    //         returnBody: `{"err":0,"data":"http://image.jef.site/$(key)"","key":"$(key)","hash":"$(etag)"}`
+    //     }
+    // };
+
     return config;
 };
