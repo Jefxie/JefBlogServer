@@ -13,6 +13,8 @@ module.exports = app => {
     router.get("/api/user", controller.user.userLogin);
     router.post("/api/user", controller.user.userLogout);
     router.put("/api/user", controller.user.modifyUserInfo);
+    router.get("/api/user/login", controller.user.redirectTo);
+
 
     // category
     router.get("/api/category", controller.category.getCategoryList);

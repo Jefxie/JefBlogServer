@@ -23,10 +23,10 @@ class Comment extends Controller {
 
         await ctx.service.comment.addComment(body);
         // 添加消息
-        if (body.parent) {
+        if (body.parent || body.cur) {
             ctx.service.notice.addNotice({
                 from: body.author,
-                to: body.parent,
+                to: body.parent || body.cur,
                 target: body.article_id
             });
         }
@@ -47,7 +47,7 @@ class Comment extends Controller {
         const { body } = ctx.request;
         if (!body.id) throw 3;
 
-        await ctx.service.comment.removeComment(id);
+        await ctx.service.comment.removeComment(body.id);
     }
 }
 

@@ -21,7 +21,7 @@ class CategoryService extends Service {
         const { ctx } = this;
         return ctx.model.Article.findOne({ id }, { __v: 0 })
             .populate("category", "-_id name id")
-            .populate("author", "-_id name login id");
+            .populate("author", "-_id name login avatar_url id");
     }
     getArticleList(category = {}, total = 10, page = 1) {
         return this.ctx.model.Article.find(category, {

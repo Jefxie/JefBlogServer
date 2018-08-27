@@ -20,43 +20,28 @@ module.exports = appInfo => {
     // mongodb配置
     config.mongoose = {
         client: {
-            url:'mongodb://127.0.0.1/jefblog',
-            options: {
-                user: "jefblog",
-                pass: "jef@blog.db"
-            }
-        }
-        // client: {
-        //     url: "mongodb://127.0.0.1/jef_blog",
-        //     options: {
-        //         // user: "jefblog",
-        //         // pass: "jef@blog.db"
-        //     }
+            url: "mongodb://127.0.0.1/jef_blog",
+            options: {}
         }
     };
     // github passport config
     config.passportGithub = {
-        key: "f03be718aa07234348ea",
-        secret: "0f3eff9672e4f0a7a33513f9687af2cc8588be5e"
-        // callbackURL: '/passport/github/callback',
-        // proxy: false,
+        key: "e4007a4eb776489e4d70",
+        secret: "55928e4e5e9a083c5880bd2dd6d7e7aaf00b9f04"
     };
 
     // cors
     config.cors = {
-        origin: "https://www.jef.site",
+        origin: "http://localhost:3010",
         allowMethods: "GET,HEAD,PUT,POST,DELETE,PATCH",
         credentials: true
     };
 
     // 安全配置 开发时临时关闭csrf
     config.security = {
-        // csrf: {
-        //     enable: false
-        // }
-        // domainWhiteList: [
-        //     "http://127.0.0.1:7001"
-        // ]
+        csrf: {
+            enable: false
+        }
     };
     // 七牛生成token
     config.qiniuToken = {

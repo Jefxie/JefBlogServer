@@ -45,6 +45,9 @@ class Users extends Controller {
 
         ctx.logout();
     }
+    redirectTo(){
+        this.ctx.redirect(`http://localhost:3010/login`)
+    }
 }
 
 module.exports = Users;
