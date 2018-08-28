@@ -1,4 +1,5 @@
 logs/
+config/config.prod.js
 dist/
 npm-debug.log
 yarn-error.log

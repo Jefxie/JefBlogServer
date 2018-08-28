@@ -32,7 +32,7 @@ class Users extends Controller {
             user.bio = body.bio || user.bio;
             user.blog = body.blog || user.blog;
             user.avatar_url = body.avatar_url || user.avatar_url;
-            user.location = body.location || location;
+            user.location = body.location || user.location;
 
             user.save();
         } catch (error) {
@@ -45,8 +45,10 @@ class Users extends Controller {
 
         ctx.logout();
     }
-    redirectTo(){
-        this.ctx.redirect(`http://localhost:3010/login`)
+    redirectTo() {
+        const { ctx } = this;
+
+        ctx.redirect(ctx.app.config.returnTo.to);
     }
 }
 

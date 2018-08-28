@@ -17,7 +17,10 @@ module.exports = appInfo => {
         "4": "权限不足"
     };
 
-    config.returnTo = "http://127.0.0.1:7001/api/user/login/";
+    config.returnTo = {
+        api: "http://127.0.0.1:7001/api/user/login",
+        to: "http://localhost:3010/login"
+    };
 
     // mongodb配置
     config.mongoose = {
@@ -28,8 +31,8 @@ module.exports = appInfo => {
     };
     // github passport config
     config.passportGithub = {
-        key: "*",
-        secret: "*"
+        key: "e4007a4eb776489e4d70",
+        secret: "55928e4e5e9a083c5880bd2dd6d7e7aaf00b9f04"
     };
 
     // cors

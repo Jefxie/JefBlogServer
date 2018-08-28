@@ -18,9 +18,9 @@ class CommentService extends Service {
     getComment(id) {
         return this.ctx.model.Comment.find(
             { article_id: id },
-            { _id: 0, __v: 0 }
+            { _id: 0, __v: 0, avatar_url: 0 }
         )
-            .populate("author", "-_id name login id")
+            .populate("author", "-_id name login id avatar_url")
             .populate("parent", "-_id name login avatar_url");
     }
     removeComment(id) {

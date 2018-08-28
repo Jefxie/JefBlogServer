@@ -1,6 +1,7 @@
 module.exports = app => {
     app.passport.verify(async (ctx, user) => {
-        ctx.session.returnTo = "http://127.0.0.1:7001/api/user/login/";
+        const _returnTo = ctx.app.config.returnTo;
+        ctx.session.returnTo = _returnTo.api;
         // 检查用户
         try {
             const existsUser = await ctx.model.User.findOne({ id: user.id });
